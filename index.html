@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feliz 5.9</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: radial-gradient(circle at top left, #ffdee9, #b5fffc);
+      animation: backgroundShift 10s ease-in-out infinite alternate;
+      position: relative;
+    }
+
+    @keyframes backgroundShift {
+      0% { background: radial-gradient(circle at top left, #ffdee9, #b5fffc); }
+      50% { background: radial-gradient(circle at center, #ffe5ec, #ffc1cc); }
+      100% { background: radial-gradient(circle at bottom right, #fcd5ce, #e0f7fa); }
+    }
+
+    .main-content {
+      position: relative;
+      z-index: 3;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 192, 203, 0.5);
+      animation: floatBox 6s ease-in-out infinite;
+    }
+
+    @keyframes floatBox {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .title {
+      font-size: 2.8em;
+      color: #fff;
+      text-shadow: 2px 2px 8px #ff69b4;
+      animation: pulse 4s infinite ease-in-out;
+    }
+
+    .title span {
+      font-size: 1.4em;
+      display: block;
+      margin-top: 12px;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); color: #fff; }
+      50% { transform: scale(1.05); color: #ffe6f0; }
+    }
+
+    .image-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .image-container img {
+      width: 300px;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      box-shadow: 0 4px 15px rgba(255, 105, 180, 0.5);
+    }
+
+    .image-container img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 25px rgba(255, 105, 180, 0.7);
+    }
+
+    .explosion {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2em;
+      color: #ff69b4;
+      text-shadow: 3px 3px 10px rgba(255, 0, 150, 0.5);
+      z-index: 4;
+      opacity: 0;
+      animation: showVerse 3s ease-out forwards;
+      padding: 20px;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      width: 60%;
+      max-width: 400px;
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    @keyframes showVerse {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+      100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    .hearts-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .heart {
+      position: absolute;
+      width: var(--size);
+      height: var(--size);
+      background-color: var(--color);
+      transform: rotate(45deg);
+      animation: float 8s linear infinite;
+      top: 100vh;
+      box-shadow: 0 0 10px var(--color), 0 0 20px var(--color);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: var(--size);
+      height: var(--size);
+      background-color: var(--color);
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: calc(-1 * var(--size) / 2);
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: calc(-1 * var(--size) / 2);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(45deg) scale(0.8);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-110vh) rotate(45deg) scale(1.1);
+        opacity: 0;
+      }
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Substitua "sua-musica.mp3" pelo arquivo da sua música local -->
+  <audio autoplay loop>
+    <source src="./Ed Sheeran - Perfect.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+
+  <div class="hearts-container" id="hearts-container"></div>
+
+  <div class="main-content">
+    <h1 class="title">feliz 5.9 para nozes<br><span>amooooor da minha viiidiinhaaa 💕</span></h1>
+    
+    <div class="image-container">
+      <img src="./foto1.jpeg" alt="Foto 1" onclick="explodeImage(this, 'Você é o meu sol em um dia nublado! 💖')"/>
+      <img src="./foto2.jpeg" alt="Foto 2" onclick="explodeImage(this, 'Com você, cada momento é único e perfeito! 💕')"/>
+      <img src="./foto3.jpeg" alt="Foto 3" onclick="explodeImage(this, 'Meu amor por você é eterno e infinito! 💖')"/>
+    </div>
+  </div>
+
+  <script>
+    const colors = ['#ff4d6d', '#ff85a1', '#ff94cc', '#ffb3d9', '#ff69b4', '#ff1a75'];
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+
+      const size = 10 + Math.random() * 20;
+      heart.style.setProperty('--size', `${size}px`);
+
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      heart.style.setProperty('--color', color);
+
+      heart.style.left = `${Math.random() * 100}vw`;
+      heart.style.animationDuration = `${4 + Math.random() * 4}s`;
+
+      document.getElementById("hearts-container").appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+
+    setInterval(createHeart, 150);
+
+    function explodeImage(img, verse) {
+      // Aplica o efeito de explosão
+      img.style.transform = "scale(2) rotate(360deg)";
+      img.style.opacity = "0";
+      
+      setTimeout(() => {
+        // Cria o verso romântico
+        const verseElement = document.createElement("div");
+        verseElement.classList.add("explosion");
+        verseElement.textContent = verse;
+        document.body.appendChild(verseElement);
+
+        // Remove o verso após o efeito
+        setTimeout(() => verseElement.remove(), 4000);
+      }, 400);
+
+      // Restaura a imagem após 1.2 segundos
+      setTimeout(() => {
+        img.style.transform = "scale(1) rotate(0deg)";
+        img.style.opacity = "1";
+      }, 1200);
+    }
+
+    // Para adicionar os corações flutuantes
+    function createParticles() {
+      const container = document.getElementById("particles");
+      for (let i = 0; i < 80; i++) {
+        const particle = document.createElement("div");
+        particle.classList.add("particle");
+        particle.style.left = `${Math.random() * 100}vw`;
+        particle.style.top = `${Math.random() * 100}vh`;
+        particle.style.animationDelay = `${Math.random() * 2}s`;
+        container.appendChild(particle);
+      }
+    }
+
+    createParticles();
+  </script>
+</body>
+</html>
